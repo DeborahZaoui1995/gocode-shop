@@ -1,8 +1,6 @@
 import './Header.css';
 
 const Header = ({categories, onChange}) => {
-    console.log({categories});
-
     return (
       <nav>
         <h1>Products</h1>
@@ -16,12 +14,6 @@ const Header = ({categories, onChange}) => {
                    <option value={category}>{category}</option>
                      )
                 }
-
-
-              {/* <option value="men's clothing">men's clothing</option>
-              <option value="jewelery">jewelery</option>
-              <option value="electronics">electronics</option>
-              <option value="women's clothing">women's clothing</option>  */}
             </select>
           </div>
   

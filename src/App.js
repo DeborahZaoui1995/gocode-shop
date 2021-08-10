@@ -5,6 +5,7 @@ import Products from "./components/Products";
 import { useState } from "react";
 
 function App() {
+
   const productsArr = [
     {
       id: 1,
@@ -210,9 +211,7 @@ function App() {
     if (event.target.value === "All") 
     setProducts(productsArr);
     else
-      setProducts(
-        productsArr.filter((product) => product.category === event.target.value)
-      );
+      setProducts(productsArr.filter((product) => product.category === event.target.value));
   };
 
   return (
