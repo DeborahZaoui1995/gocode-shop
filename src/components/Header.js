@@ -1,6 +1,8 @@
 import './Header.css';
 
-const Header = () => {
+const Header = ({categories, onChange}) => {
+    console.log({categories});
+
     return (
       <nav>
         <h1>Products</h1>
@@ -8,11 +10,18 @@ const Header = () => {
         <div className="sort">
           <div className="collection-sort">
             <label>Filter by:</label>
-            <select>
-              <option value="/">men's clothing</option>
-              <option value="/">jewelery</option>
-              <option value="/">electronics</option>
-              <option value="/">women's clothing</option>
+            <select onChange={onChange}>
+                { 
+                     categories.map((category) => 
+                   <option value={category}>{category}</option>
+                     )
+                }
+
+
+              {/* <option value="men's clothing">men's clothing</option>
+              <option value="jewelery">jewelery</option>
+              <option value="electronics">electronics</option>
+              <option value="women's clothing">women's clothing</option>  */}
             </select>
           </div>
   

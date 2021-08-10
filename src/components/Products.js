@@ -1,7 +1,7 @@
 import './Products.css';
 import Product from "./Product";
 
-const Products = ({products}) => {
+const Products = ({products, onChange}) => {
     return (
       <section className="products">
 
