@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import Products from "./components/Products";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import CartContext from "./components/CartContext";
+import ResponsiveDrawer from "./components/ResponsiveDrawer";
 
 
 const groupBy = (xs, key) =>
@@ -40,13 +42,23 @@ function App() {
       setProducts(productsArr.filter((product) => product.category === event.target.value));
   };
 
+  //const [color, setColor] = useState("blue");
+  //le array qui contient les produits du panier
+  const [productsCart, setProductsCart] = useState([]);
+
 
   return (
     <div className="App">
         <header className="App-header">
-          {loader  && <Loader/>}
+
+          <CartContext.Provider value ={{ productsCart, setProductsCart }}>
+          {/* {loader  && <Loader/>}
           <Header categories={categories} onChange={onChange} />
-          <Products products={products} />
+          <Products products={products} /> */}
+
+          <ResponsiveDrawer loader={loader} categories={categories} onChange={onChange} products={products}/>
+          </CartContext.Provider>
+          
         </header>
     </div>
   );

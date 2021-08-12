@@ -6,7 +6,7 @@ const Products = ({products}) => {
       <section className="products">
   {
     products.map( (product) => 
-      <Product key={product.id} image={product.image}  title={product.title} price={product.price} description={product.description} category={product.category}  />
+      <Product key={product.id} id={product.id} image={product.image}  title={product.title} price={product.price} description={product.description} category={product.category}  />
     )
   }
       </section>
