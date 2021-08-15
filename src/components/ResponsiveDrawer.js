@@ -149,7 +149,7 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
         { props.loader  && <Loader/>}
         <Header categories={props.categories} onChange={props.onChange} />
-        <RangeSlider products={props.products}/>
+        <RangeSlider />
         <Products products={props.products} />
       </main>
     </div>

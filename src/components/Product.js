@@ -18,7 +18,7 @@ const Product = ({ id, title, price, description, category, image }) => {
     });
 
     //Si le produit existe deja dans le panier
-    if (productInCart === false) {
+    if (productInCart === 0 || productInCart === false) {
       setProductsCart(
         productsCart.map((item) =>
           item.id === id
