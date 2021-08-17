@@ -4,7 +4,7 @@ html, body {
   }
   
   body {
-    background: linear-gradient(#8adca8 0%, #4b86be 100%);
+   
     background-size: 100% auto;
     font-family: sans-serif;
   }
@@ -13,7 +13,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 2rem;
-    grid-gap: 1rem;
+    grid-gap: 1rem;    
   }
   
   .example {

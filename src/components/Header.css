@@ -1,8 +1,8 @@
-h1 {
-    font-size: 28px;
-    font-weight: 300;
-    flex: 1;
-  }
+ /* Product Layout */
+ .product-filter {
+  display: flex;
+  padding: 15px 0;
+}
 
 
   label {

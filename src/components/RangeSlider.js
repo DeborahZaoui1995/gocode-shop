@@ -6,7 +6,8 @@ import ProductsContext from "./ProductsContext";
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 600,
+   
   },
 });
 
@@ -30,9 +31,6 @@ export default function RangeSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-        Filter by price
-      </Typography>
       <Slider
         value={value}
         onChange={handleChange}

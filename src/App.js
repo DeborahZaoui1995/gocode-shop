@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 import CartContext from "./components/CartContext";
 import ResponsiveDrawer from "./components/ResponsiveDrawer";
 import ProductsContext from "./components/ProductsContext";
+import Header from "./components/Header";
+import Products from "./components/Products";
+import Loader from "./components/Loader";
+import { BrowserRouter as Router, Switch, Route, Link, useParams } from "react-router-dom";
+import FullWidthGrid from "./FullWidthGrid";
+import Home from "./components/views/Home";
+import ProductDetails from "./components/views/ProductDetails";
+
+
 
 const groupBy = (xs, key) =>
   xs.reduce((rv, x) => {
@@ -43,23 +52,44 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <CartContext.Provider value={{ productsCart, setProductsCart }}>
-          {/* {loader  && <Loader/>}
-          <Header categories={categories} onChange={onChange} />
-          <Products products={products} /> */}
-          <ProductsContext.Provider value={{ products, setProducts, productsArr }}>
-            <ResponsiveDrawer
-              loader={loader}
-              categories={categories}
-              onChange={onChange}
-              products={products}
-            />
-          </ProductsContext.Provider>
-        </CartContext.Provider>
-      </header>
-    </div>
+    <CartContext.Provider value={{ productsCart, setProductsCart }}>
+      <ProductsContext.Provider value={{ products, setProducts, productsArr }}>
+        <Router>
+          <div className="App">
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/" color="inherit" top={80}>
+                    Home
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <br />
+            <br />
+            <br />
+
+            <Switch>
+              <Route path="/products/:id">
+                <ProductDetails />
+              </Route>
+
+              <Route path="/">
+                <header className="App-header">
+                  <Home
+                    loader={loader}
+                    categories={categories}
+                    onChange={onChange}
+                    products={products}
+                  />
+                </header>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </ProductsContext.Provider>
+    </CartContext.Provider>
   );
 }
 

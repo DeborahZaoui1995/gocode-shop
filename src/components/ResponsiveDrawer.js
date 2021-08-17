@@ -21,6 +21,7 @@ import { useContext } from "react";
 import CartContext from "./CartContext";
 import Loader from "./Loader";
 import RangeSlider from "./RangeSlider";
+import { Button, Grid } from "@material-ui/core";
 
 
 const drawerWidth = 240;
@@ -40,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor:"#f73378",
+   
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -53,8 +57,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+    marginLeft:0,
   },
 }));
 
@@ -82,6 +85,7 @@ function ResponsiveDrawer(props) {
           <ListItem button key={product.title}>
                <img src={product.image} width="100" height="100" />
             <ListItemText primary={product.title} />
+            <h5>{product.amount} &emsp;</h5>
             <h5>{product.price * product.amount}</h5>
           </ListItem>
         ))}
@@ -89,12 +93,11 @@ function ResponsiveDrawer(props) {
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -107,11 +110,13 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" color='inherit' noWrap >
             Products
-          </Typography>
+          </Typography> 
+
+        
         </Toolbar>
-      </AppBar>
+      </AppBar> 
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -125,13 +130,13 @@ function ResponsiveDrawer(props) {
             classes={{
               paper: classes.drawerPaper,
             }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+            ModalProps={{keepMounted: true, // Better open performance on mobile.
+}}
           >
             {drawer}
           </Drawer>
         </Hidden>
+
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
@@ -147,10 +152,25 @@ function ResponsiveDrawer(props) {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        { props.loader  && <Loader/>}
+        <Grid container spacing={2} display="flex">
+
+            <Grid item xs={6} justifyContent="flex-start" >
+            <Header categories={props.categories} onChange={props.onChange} />
+            </Grid>
+
+            <Grid item xs={6} justifyContent="flex-end">
+            <RangeSlider />
+            </Grid>
+        </Grid>
+
+       
+         
+
+
+        {/* { props.loader  && <Loader/>}
         <Header categories={props.categories} onChange={props.onChange} />
         <RangeSlider />
-        <Products products={props.products} />
+        <Products products={props.products} /> */}
       </main>
     </div>
   );
