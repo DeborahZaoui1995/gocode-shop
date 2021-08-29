@@ -1,6 +1,7 @@
  /* Product Layout */
  .product-filter {
-  display: flex;
+   /* Definit un flex contener */
+  display: flex; 
   padding: 15px 0;
 }
 

@@ -9,8 +9,8 @@ function Home ({ loader, categories, onChange, products }) {
     <React.Fragment>
 
       {loader && <Loader />}
-      <ResponsiveDrawer categories={categories} onChange={onChange} />
-      <Products products={products} />
+      <ResponsiveDrawer categories={categories} onChange={onChange} products={products} />
+      {/* <Products products={products} /> */}
 
 
 {/* 

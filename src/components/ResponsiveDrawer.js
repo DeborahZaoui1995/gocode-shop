@@ -19,10 +19,9 @@ import Header from "./Header";
 import Products from "./Products";
 import { useContext } from "react";
 import CartContext from "./CartContext";
-import Loader from "./Loader";
+
 import RangeSlider from "./RangeSlider";
 import { Button, Grid } from "@material-ui/core";
-
 
 const drawerWidth = 240;
 
@@ -41,9 +40,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor:"#f73378",
-   
-    
+    backgroundColor: "#f73378",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -57,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
-    marginLeft:0,
+   
   },
 }));
 
@@ -83,21 +80,22 @@ function ResponsiveDrawer(props) {
       <List>
         {productsCart.map((product) => (
           <ListItem button key={product.title}>
-               <img src={product.image} width="100" height="100" />
+            <img src={product.image} width="100" height="100" />
             <ListItemText primary={product.title} />
             <h5>{product.amount} &emsp;</h5>
-            <h5>{product.price * product.amount}</h5>
+            <h5>{(product.price * product.amount).toFixed(2) + "\u0024" }</h5>
           </ListItem>
         ))}
       </List>
     </div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
-       <CssBaseline />
+      <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -107,16 +105,15 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <ShoppingCartIcon style={{ fontSize: 40 }} color="white" />
           </IconButton>
 
-          <Typography variant="h6" color='inherit' noWrap >
+          <Typography variant="h6" color="inherit" noWrap>
             Products
-          </Typography> 
-
-        
+          </Typography>
         </Toolbar>
-      </AppBar> 
+      </AppBar>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -130,8 +127,9 @@ function ResponsiveDrawer(props) {
             classes={{
               paper: classes.drawerPaper,
             }}
-            ModalProps={{keepMounted: true, // Better open performance on mobile.
-}}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
           >
             {drawer}
           </Drawer>
@@ -151,21 +149,25 @@ function ResponsiveDrawer(props) {
       </nav>
 
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Grid container spacing={2} display="flex">
-
-            <Grid item xs={6} justifyContent="flex-start" >
+        <Grid
+          container
+          direction="row"
+         
+         justifyContent="flex-start"
+        alignItems="center"
+        >
+          <Grid item xs={3}>
             <Header categories={props.categories} onChange={props.onChange} />
-            </Grid>
+          </Grid>
 
-            <Grid item xs={6} justifyContent="flex-end">
+          <Grid item xs={3}>
             <RangeSlider />
-            </Grid>
+          </Grid>
         </Grid>
 
-       
-         
+        {/* <div className={classes.toolbar} /> */}
 
+         <Products products={props.products}/>
 
         {/* { props.loader  && <Loader/>}
         <Header categories={props.categories} onChange={props.onChange} />

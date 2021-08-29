@@ -11,16 +11,17 @@
   }
 
   .Product {
-    text-align: left;
+    white-space: nowrap; 
+   
+    /* Pour limiter la longueur du titre */
+    width: 250px; 
     font-weight: 100;
-    margin-bottom: 10px;
-    padding: 10px;
+   
   }
 
 .product-card {
     display: flex;
     flex-direction: column;
-  
     padding: 2%;
     flex: 1 16%;
   
@@ -28,19 +29,11 @@
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
   }
 
-  
   .product-image img {
-    
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-size: cover;
-      width: 200px;
-      height: 140px;
-      object-fit: cover;
-   
-   
+    width: 100%;
   }
-  
+
+
   .product-info {
     margin-top: auto;
     padding-top: 20px;

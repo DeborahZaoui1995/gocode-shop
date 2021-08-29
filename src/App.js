@@ -14,6 +14,8 @@ import ProductDetails from "./components/views/ProductDetails";
 
 
 
+
+
 const groupBy = (xs, key) =>
   xs.reduce((rv, x) => {
     rv[x[key]] = true || [];
@@ -32,7 +34,7 @@ function App() {
   useEffect(() => {
     setLoader(true);
 
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://localhost:8000/products")
       .then((res) => res.json())
       .then((json) => {
         setProducts(json);

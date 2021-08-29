@@ -17,10 +17,14 @@ function valuetext(value) {
 
 export default function RangeSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState([0, 50]);
+ 
+  const { productsArr,setProducts } = useContext(ProductsContext);
 
-  const { productsArr } = useContext(ProductsContext);
-  const { setProducts } = useContext(ProductsContext);
+
+  let maxValue = Math.max.apply(Math,productsArr.map(function(o) { return o.price; }));
+  let minValue = Math.min.apply(Math,productsArr.map(function(o) { return o.price; }));
+  let [value, setValue] = React.useState([minValue, maxValue]);
+
 
   const handleChange = (event, newValue) => {
     setProducts(productsArr.filter((product) => product.price <= newValue[1]));
